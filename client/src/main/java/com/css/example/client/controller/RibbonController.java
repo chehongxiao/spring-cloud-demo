@@ -1,19 +1,23 @@
 package com.css.example.client.controller;
 
 import com.css.example.client.entity.User;
-import com.css.example.client.feign.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
-public class UserController {
+@RequestMapping("/ribbon")
+public class RibbonController {
+    private static final String REST_URL_PREFIX = "http://cloud-provider:8081";
+
     @Autowired
-    private UserFeignClient userFeignClient;
+    private RestTemplate restTemplate;
+
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
-        User user = this.userFeignClient.findById(id);
-        return user;
+        return restTemplate.getForObject(REST_URL_PREFIX+"/"+id,User.class);
     }
 }
