@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: cloud-zuul
+server:
+  port: 5000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8080/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  prefix: /api
+  routes:
+    user-service:
+      path: /user-service/**
+      serviceId: cloud-provider
+  ignored-patterns: /hello/*
+
