@@ -11,13 +11,13 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/ribbon")
 public class RibbonController {
-    private static final String REST_URL_PREFIX = "http://cloud-provider:8081";
+    private static final String REST_URL_PREFIX = "http://cloud-provider";
 
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
-        return restTemplate.getForObject(REST_URL_PREFIX+"/"+id,User.class);
+        return restTemplate.getForObject(REST_URL_PREFIX+"/user/"+id,User.class);
     }
 }

@@ -12,7 +12,7 @@ import feign.hystrix.FallbackFactory;
 
 @FeignClient(name = "cloud-provider",/*fallback = UserFeignClientFallback.class,*/fallbackFactory = FeignClientFallbackFactory.class)
 public interface UserFeignClient {
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public User findById(@PathVariable("id") Long id);
 }
 
