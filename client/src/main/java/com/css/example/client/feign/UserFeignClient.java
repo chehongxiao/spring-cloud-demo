@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import feign.hystrix.FallbackFactory;
 
-@FeignClient(name = "cloud-provider",fallback = UserFeignClientFallback.class,fallbackFactory = FeignClientFallbackFactory.class)
+@FeignClient(name = "cloud-provider",/*fallback = UserFeignClientFallback.class,*/fallbackFactory = FeignClientFallbackFactory.class)
 public interface UserFeignClient {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User findById(@PathVariable("id") Long id);
@@ -43,7 +43,7 @@ class FeignClientFallbackFactory implements FallbackFactory<UserFeignClient> {
 /**
  * 第二种fallback方法
  */
-@Component
+/*@Component
 class UserFeignClientFallback implements UserFeignClient{
     private static final Logger LOGGER = LoggerFactory.getLogger(UserFeignClientFallback.class);
     @Override
@@ -56,4 +56,4 @@ class UserFeignClientFallback implements UserFeignClient{
         user.setBalance((double) 0);
         return user;
     }
-}
+}*/
