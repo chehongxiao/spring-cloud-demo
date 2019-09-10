@@ -1,0 +1,16 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/chehongxiao/spring-cloud-config-repository
+          username:
+          password:
+#logging:
+#  level:
+#    org.springframework.boot: debug
+#    org.springframework.cloud: debug
